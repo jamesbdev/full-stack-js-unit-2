@@ -51,7 +51,15 @@ This function will create and insert/append the elements needed for the paginati
 */
 
 const addPagination = (list) => {
-  const numberOfBtns = Math.floor(list.length / itemsPerPage);
+  const numberOfPages = Math.floor(list.length / itemsPerPage) + 1;
+  const paginationList = document.querySelector('.link-list');
+
+  paginationList.innerHTML = "";
+  for (let i = 1; i < numberOfPages; i++ ) {
+    const button = document.createElement('li');
+    button.innerHTML = ` <button type="button">${ i }</button>`;
+    paginationList.insertAdjacentElement('beforeend', button);
+  }
   
 }
 
