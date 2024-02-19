@@ -57,11 +57,29 @@ const addPagination = (list) => {
   paginationList.innerHTML = "";
   for (let i = 1; i < numberOfPages; i++ ) {
     const button = document.createElement('li');
+    button.classList.add('button');
     button.innerHTML = ` <button type="button">${ i }</button>`;
     paginationList.insertAdjacentElement('beforeend', button);
   }
+
+  const firstBtn = document.querySelector('button');
+  firstBtn.classList.add('active');
   
+  paginationList.addEventListener('click', function(element){
+   const buttons = document.querySelectorAll('button');
+     if(element.target.tagName.toLowerCase() === "button") {
+       for(let i = 0; i < buttons.length; i++) {
+         buttons[i].classList.remove('active');
+
+       }
+       element.target.classList.add('active');
+       const btnText = element.target.innerText;
+       showPage(list, btnText);
+     }
+  })
 }
+
+
 
 
 
