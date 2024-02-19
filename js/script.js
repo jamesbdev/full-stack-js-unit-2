@@ -12,7 +12,7 @@ For assistance:
 */
 
 //console.log(data);
-const itemsPerPage = 4;
+const itemsPerPage = 9;
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -42,7 +42,7 @@ const showPage = (list, page) => {
   }
 }
 
-showPage(data, 1);
+
 
 
 /*
@@ -50,6 +50,14 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 
+const addPagination = (list) => {
+  const numberOfBtns = Math.floor(list.length / itemsPerPage);
+  
+}
+
 
 
 // Call functions
+
+showPage(data, 1);
+addPagination(data, 1);
