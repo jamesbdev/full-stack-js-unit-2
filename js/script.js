@@ -12,7 +12,7 @@ For assistance:
 */
 
 //console.log(data);
-const itemsPerPage = 8;
+const itemsPerPage = 4;
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -35,9 +35,10 @@ const showPage = (list, page) => {
     </div>
     <div class="joined-details">
       <span class="date">Joined ${ student.registered.date }</span>
-    </div>`
-    };
+    </div>`;
     studentList.insertAdjacentElement('afterbegin', studentItem);
+    };
+
   }
 }
 
