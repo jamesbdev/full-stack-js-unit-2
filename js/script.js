@@ -68,7 +68,7 @@ const addPagination = (list) => {
   
   //add event listener to the button list
   paginationList.addEventListener('click', function(element){
-   const buttons = document.querySelectorAll('button');
+   const buttons = document.querySelectorAll('.link-list button');
    //check if the click element is a button
      if(element.target.tagName.toLowerCase() === "button") {
        for(let i = 0; i < buttons.length; i++) {
@@ -111,7 +111,7 @@ addSearch();
 const input = document.querySelector('#search');
 const submitBtn = document.querySelector('.student-search button');
 
-/* function that: 
+/* function: 
 - filters the students by comparing the student's name with the search string
 - adds an error message if no student is found 
 - changes the pagination buttons according to the new data 
@@ -139,7 +139,10 @@ const filterBySearch = () => {
    }
    //call the page function with the new list
    showPage(newList, 1);
+   //add pagination buttons
    addPagination(newList, 1);
+   
+ 
    if (newList.length == 0) {
       //create error message
       const message = document.createElement('p');
@@ -148,8 +151,14 @@ const filterBySearch = () => {
       const studentList = document.querySelector('.student-list');
       //append error message to the DOM
       studentList.insertAdjacentElement('beforebegin', message);
-    
    } 
+   //check if there are less than 9 items in the new data
+   if (newList.length <= itemsPerPage) {
+    //remove pagination buttons
+    const paginationList = document.querySelector('.link-list');
+    paginationList.innerHTML = "";
+   }
+
 }
 
 input.addEventListener('keyup', filterBySearch);
