@@ -72,7 +72,6 @@ const addPagination = (list) => {
        for(let i = 0; i < buttons.length; i++) {
          //remove the active class from all buttons
          buttons[i].classList.remove('active');
-
        }
        //add the active class to the clicked element
        element.target.classList.add('active');
