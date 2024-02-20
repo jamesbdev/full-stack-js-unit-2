@@ -1,7 +1,4 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
+
 
 //declare the number of items per page
 const itemsPerPage = 9;
@@ -104,3 +101,31 @@ const addSearch = () => {
 }
 
 addSearch();
+
+const input = document.querySelector('#search');
+const submitBtn = document.querySelector('.student-search button');
+
+const filterBySearch = () => {
+   //get the input value from the input 
+   const searchValue = input.value.toLowerCase();
+   //declare a new list for the data;
+   const newList = [];
+   //loop through list of students
+   for(let i = 0; i < data.length; i++) {
+      const firstName = data[i].name.first.toLowerCase();
+      const lastName = data[i].name.last.toLocaleLowerCase();
+      const fullName = `${firstName} ${lastName}`;
+      //check if the student's name contains the input's string
+      if (fullName.includes(searchValue)) {
+         //add the student to the new list
+         newList.push(data[i]);
+      }
+   }
+   //call the page function with the new list
+   showPage(newList, 1);
+}
+
+input.addEventListener('keyup', filterBySearch);
+submitBtn.addEventListener('click', filterBySearch);
+
+
