@@ -85,7 +85,8 @@ showPage(data, 1);
 //add the pagination buttons
 addPagination(data, 1);
 
-
+/* function that adds a search input element on the page
+*/
 const addSearch = () => {
    //get the heading element
    const heading = document.getElementsByTagName('h2');
@@ -105,6 +106,11 @@ addSearch();
 const input = document.querySelector('#search');
 const submitBtn = document.querySelector('.student-search button');
 
+/* function that: 
+- filters the students by comparing the student's name with the search string
+- adds an error message if no student is found 
+- changes the pagination buttons according to the new data 
+*/
 const filterBySearch = () => {
    //remove the error message if it exists
    const message = document.querySelector('.error-message');
@@ -130,14 +136,14 @@ const filterBySearch = () => {
    showPage(newList, 1);
    addPagination(newList, 1);
    if (newList.length == 0) {
-      console.log('there was no matches');
       //create error message
       const message = document.createElement('p');
       message.classList.add('error-message');
       message.innerText = "Sorry, no matches were found. Please try again.";
       const studentList = document.querySelector('.student-list');
+      //append error message to the DOM
       studentList.insertAdjacentElement('beforebegin', message);
-      //append to the DOM
+    
    } 
 }
 
