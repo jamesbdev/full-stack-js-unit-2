@@ -106,6 +106,11 @@ const input = document.querySelector('#search');
 const submitBtn = document.querySelector('.student-search button');
 
 const filterBySearch = () => {
+   //remove the error message if it exists
+   const message = document.querySelector('.error-message');
+   if (message) {
+      message.remove();
+   }
    //get the input value from the input 
    const searchValue = input.value.toLowerCase();
    //declare a new list for the data;
@@ -123,9 +128,22 @@ const filterBySearch = () => {
    }
    //call the page function with the new list
    showPage(newList, 1);
+   addPagination(newList, 1);
+   if (newList.length == 0) {
+      console.log('there was no matches');
+      //create error message
+      const message = document.createElement('p');
+      message.classList.add('error-message');
+      message.innerText = "Sorry, no matches were found. Please try again.";
+      const studentList = document.querySelector('.student-list');
+      studentList.insertAdjacentElement('beforebegin', message);
+      //append to the DOM
+   } 
 }
 
 input.addEventListener('keyup', filterBySearch);
 submitBtn.addEventListener('click', filterBySearch);
+
+
 
 
