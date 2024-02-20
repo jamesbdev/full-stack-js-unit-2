@@ -1,5 +1,4 @@
 
-
 //declare the number of items per page
 const itemsPerPage = 9;
 /*
@@ -37,7 +36,7 @@ const showPage = (list, page) => {
 
 
 /*
-This function dynamically creates the mark up for the pagination buttons
+This function dynamically creates the markup for the pagination buttons
 */
 
 const addPagination = (list) => {
@@ -90,8 +89,7 @@ showPage(data, 1);
 //add the pagination buttons
 addPagination(data, 1);
 
-/* function that adds a search input element on the page
-*/
+// this function adds a search input element on the page
 const addSearch = () => {
    //get the heading element
    const heading = document.getElementsByTagName('h2');
@@ -110,6 +108,8 @@ addSearch();
 
 const input = document.querySelector('#search');
 const submitBtn = document.querySelector('.student-search button');
+
+
 
 /* function: 
 - filters the students by comparing the student's name with the search string
@@ -142,25 +142,38 @@ const filterBySearch = () => {
    //add pagination buttons
    addPagination(newList, 1);
    
- 
-   if (newList.length == 0) {
-      //create error message
-      const message = document.createElement('p');
-      message.classList.add('error-message');
-      message.innerText = "Sorry, no matches were found. Please try again.";
-      const studentList = document.querySelector('.student-list');
-      //append error message to the DOM
-      studentList.insertAdjacentElement('beforebegin', message);
-   } 
-   //check if there are less than 9 items in the new data
-   if (newList.length <= itemsPerPage) {
+   //add an error message if there are no students returned
+   addErrorMsg(newList);
+   
+   //remove pagination if there are less than 9 items on the page
+   removePagination(newList);
+
+}
+
+//this function removes pagination buttons if there are less than 9 items returned by the search
+const removePagination = (list) => {
+  if (list.length <= itemsPerPage) {
     //remove pagination buttons
     const paginationList = document.querySelector('.link-list');
     paginationList.innerHTML = "";
    }
-
 }
 
+//this function adds an error message if no elements are returned
+const addErrorMsg = (list) => {
+  if (list.length == 0) {
+    //create error message
+    const message = document.createElement('p');
+    message.classList.add('error-message');
+    message.innerText = "Sorry, no matches were found. Please try again.";
+    const studentList = document.querySelector('.student-list');
+    //append error message to the DOM
+    studentList.insertAdjacentElement('beforebegin', message);
+ } 
+}
+
+
+//add event listeners to the search input
 input.addEventListener('keyup', filterBySearch);
 submitBtn.addEventListener('click', filterBySearch);
 
