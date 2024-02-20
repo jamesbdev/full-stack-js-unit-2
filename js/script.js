@@ -43,23 +43,28 @@ This function dynamically creates the mark up for the pagination buttons
 const addPagination = (list) => {
   //calculate the number of pages 
   const numberOfPages = Math.floor(list.length / itemsPerPage) + 1;
+
   //get the list element on the page
   const paginationList = document.querySelector('.link-list');
   //clear the existing content of the list
   paginationList.innerHTML = "";
   //loop through the number of pages 
-  for (let i = 1; i < numberOfPages; i++ ) {
+  for (let i = 0; i < numberOfPages; i++ ) {
     //create a button
     const button = document.createElement('li');
     button.classList.add('button');
     //add the button markup
-    button.innerHTML = ` <button type="button">${ i }</button>`;
+    button.innerHTML = `<button type="button">${ i + 1 }</button>`;
     //append the bottom to the list
     paginationList.insertAdjacentElement('beforeend', button);
   }
   //get the first button element
-  const firstBtn = document.querySelector('button');
-  firstBtn.classList.add('active');
+  const firstBtn = document.querySelector('.link-list button');
+  //check if first button is on the page
+  if (firstBtn) {
+    firstBtn.classList.add('active');
+  }
+
   
   //add event listener to the button list
   paginationList.addEventListener('click', function(element){
