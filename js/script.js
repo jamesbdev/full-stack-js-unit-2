@@ -87,3 +87,20 @@ const addPagination = (list) => {
 showPage(data, 1);
 //add the pagination buttons
 addPagination(data, 1);
+
+
+const addSearch = () => {
+   //get the heading element
+   const heading = document.getElementsByTagName('h2');
+   const searchContainer = document.createElement('div');
+   //create the markup for the search input
+   searchContainer.innerHTML = `<label for="search" class="student-search">
+   <span>Search by name</span>
+   <input id="search" placeholder="Search by name...">
+   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+ </label>`;
+   //append the search input to the DOM
+   heading[0].insertAdjacentElement('afterend', searchContainer);
+}
+
+addSearch();
